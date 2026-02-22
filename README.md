@@ -28,14 +28,11 @@ Our model fuses continuous time-series data (e.g., 12-lead ECG signals, daily fi
 │   ├── train.py             # Main training loop (KL Annealing + Cross Entropy)
 │   ├── eval.py              # Evaluates models and generates ROC/Loss figures
 │   └── show_results.py      # Quick console summary of all metrics
-├── src/                     
-│   ├── prepare_ptbxl.py     # Downloads and merges PTB-XL ECGs and clinical data
-│   ├── prepare_fnspid.py    # Downloads and merges FNSPID stock and news data
-│   ├── data_loader.py       # PyTorch DataLoader (Sliding windows + Tokenization)
-│   └── models.py            # Model definitions (VIB, Transformer, BERT, Fusion)
-├── dataset_description.md   # Detailed data processing and schema documentation
-├── math_background_vib.md   # Mathematical proofs for the Information Bottleneck
-└── model.md                 # In-depth architectural details and layer dimensions
+└── src/                     
+    ├── prepare_ptbxl.py     # Downloads and merges PTB-XL ECGs and clinical data
+    ├── prepare_fnspid.py    # Downloads and merges FNSPID stock and news data
+    ├── data_loader.py       # PyTorch DataLoader (Sliding windows + Tokenization)
+    └── models.py            # Model definitions (VIB, Transformer, BERT, Fusion)
 ```
 
 ## Installation & Setup
