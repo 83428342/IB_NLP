@@ -21,10 +21,11 @@ build/
 # =======================================================
 # Data & Datasets (DO NOT COMMIT)
 # =======================================================
-data/
-!data/.keep
+data/*
+!data/**/
 !data/**/*.py
 !data/**/*.sh
+data/**/*.csv
 *.csv
 *.dat
 *.hea
@@ -58,7 +59,8 @@ experiments/logs/
 *.html
 
 # =======================================================
-# Paper Drafts & Outlines
+# Documentation & Text Files
 # =======================================================
-paper_short.md
-presentation_outline.md
+*.md
+!README.md
+*.txt
