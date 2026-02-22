@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/ku_ai1/sulee/졸업논문/data
+cd {your dir}
 
 echo "Extracting 100Hz URLs from ptbxl_database.csv..."
 awk -F',' 'NR>1 {
