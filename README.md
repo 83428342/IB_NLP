@@ -86,5 +86,3 @@ By applying a controlled Information Bottleneck to the time-series encoder (`bet
 | `text_only` (Meta only) | 0.7528 | 0.7096 | 0.7738 | 0.7518 |
 | `ablation` (Fusion w/o VIB) | 0.9279 | 0.8358 | 0.8534 | 0.9255 |
 | **`fusion_vib` (Proposed)** | **0.9283** | **0.8518** | **0.8685** | **0.9281** |
-
-See `model.md` and `math_background_vib.md` for the exact mathematical formulation of the loss function and KL-annealing schedule.
