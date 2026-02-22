@@ -23,6 +23,8 @@ build/
 # =======================================================
 data/
 !data/.keep
+!data/**/*.py
+!data/**/*.sh
 *.csv
 *.dat
 *.hea
@@ -54,3 +56,9 @@ experiments/logs/
 *.jpeg
 *.svg
 *.html
+
+# =======================================================
+# Paper Drafts & Outlines
+# =======================================================
+paper_short.md
+presentation_outline.md
