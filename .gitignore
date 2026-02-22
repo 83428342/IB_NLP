@@ -1,0 +1,56 @@
+# =======================================================
+# Python & Environment
+# =======================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv
+.idea/
+.vscode/
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+
+# =======================================================
+# Data & Datasets (DO NOT COMMIT)
+# =======================================================
+data/
+!data/.keep
+*.csv
+*.dat
+*.hea
+*.tfrecord
+*.hdf5
+*.h5
+*.npy
+*.npz
+
+# =======================================================
+# Models, Checkpoints & Training Logs
+# =======================================================
+experiments/checkpoints*/
+experiments/logs/
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.onnx
+*.safetensors
+*.log
+
+# =======================================================
+# Generated Outputs & Figures (Optional exclusion)
+# =======================================================
+*.png
+*.pdf
+*.jpg
+*.jpeg
+*.svg
+*.html

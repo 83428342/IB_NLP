@@ -1,0 +1,56 @@
+==============================================================
+  PTB-XL 실험 실행 명령어 (4개 실험 GPU별 병렬 실행)
+==============================================================
+
+※ 사전 준비: 아래 명령어로 conda 환경 활성화 후 실행
+   $ source /home/ku_ai1/anaconda3/etc/profile.d/conda.sh
+   $ conda activate IB_LLM
+   $ cd /home/ku_ai1/sulee/졸업논문/experiments
+
+--------------------------------------------------------------
+  개별 실행 (각 GPU에서 독립적으로)
+--------------------------------------------------------------
+
+# [1] ts_only      → GPU 0
+CUDA_VISIBLE_DEVICES=0 python train.py --dataset ptbxl --exp ts_only    --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001
+
+# [2] text_only    → GPU 1
+CUDA_VISIBLE_DEVICES=1 python train.py --dataset ptbxl --exp text_only  --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001
+
+# [3] ablation     → GPU 3
+CUDA_VISIBLE_DEVICES=3 python train.py --dataset ptbxl --exp ablation   --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001
+
+# [4] fusion_vib   → GPU 5  [제안 모델]
+CUDA_VISIBLE_DEVICES=5 python train.py --dataset ptbxl --exp fusion_vib --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001
+
+
+--------------------------------------------------------------
+  4개 동시 병렬 실행 (각 로그 파일에 기록)
+--------------------------------------------------------------
+
+CUDA_VISIBLE_DEVICES=0 python train.py --dataset ptbxl --exp ts_only    --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001 > logs/ts_only.log    2>&1 &
+CUDA_VISIBLE_DEVICES=1 python train.py --dataset ptbxl --exp text_only  --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001 > logs/text_only.log   2>&1 &
+CUDA_VISIBLE_DEVICES=3 python train.py --dataset ptbxl --exp ablation   --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001 > logs/ablation.log    2>&1 &
+CUDA_VISIBLE_DEVICES=5 python train.py --dataset ptbxl --exp fusion_vib --epochs 20 --batch_size 32 --lr 1e-4 --beta 0.001 > logs/fusion_vib.log  2>&1 &
+wait && echo "ALL DONE" && python show_results.py
+
+
+--------------------------------------------------------------
+  실시간 로그 모니터링 (실행 중 다른 터미널에서)
+--------------------------------------------------------------
+
+tail -f logs/ts_only.log
+tail -f logs/text_only.log
+tail -f logs/ablation.log
+tail -f logs/fusion_vib.log
+
+# 4개 동시 모니터링
+tail -f logs/ts_only.log logs/text_only.log logs/ablation.log logs/fusion_vib.log
+
+
+--------------------------------------------------------------
+  평가 및 결과 확인 (학습 완료 후)
+--------------------------------------------------------------
+
+python eval.py --dataset ptbxl
+python show_results.py
